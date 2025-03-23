@@ -1,15 +1,13 @@
-import configparser
+class UIManager:
+    def display_menu(self):
+        print("Termux Theme Changer")
+        print("1. List Themes")
+        print("2. Apply Theme")
+        print("3. Revert to Default")
+        print("4. Exit")
 
-class ConfigManager:
-    def __init__(self, config_file):
-        self.config_file = config_file
-        self.config = configparser.ConfigParser()
-        self.config.read(config_file)
+    def get_user_choice(self):
+        return input("Enter your choice: ")
 
-    def get_config(self, section, option):
-        return self.config.get(section, option)
-
-    def set_config(self, section, option, value):
-        self.config.set(section, option, value)
-        with open(self.config_file, 'w') as configfile:
-            self.config.write(configfile)
+    def get_theme_name(self):
+        return input("Enter the theme name: ")
