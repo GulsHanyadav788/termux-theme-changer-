@@ -3,14 +3,12 @@ from config_manager import ConfigManager
 from ui_manager import UIManager
 
 def main():
-    # Setup paths
     themes_directory = "themes"
-    default_theme_path = "themes/default"  # corrected path
-    config_file = "config/config.ini"
+    default_theme_path = "themes/default"  # Correct path
+    config_file = "config/config.yaml"     # YAML config
 
-    # Initialize managers
-    theme_manager = ThemeManager(themes_directory)
-    config_manager = ConfigManager(config_file)
+    theme_manager = ThemeManager(config_file)
+    config_manager = ConfigManager("config/config.ini")  # if you want to use this elsewhere
     ui_manager = UIManager()
 
     while True:
@@ -30,21 +28,16 @@ def main():
             
             if theme_name in themes:
                 theme_manager.apply_theme(theme_name)
-                print(f"Theme '{theme_name}' applied successfully.\n")
-                
-                # Optional: save to config
-                # config_manager.set_config("theme", "current", theme_name)
             else:
                 print(f"Theme '{theme_name}' not found. Please try again.\n")
         
         elif choice == '3':
-            theme_manager.revert_to_default(default_theme_path)
-            print("Reverted to default theme.\n")
-
+            theme_manager.revert_to_default()  # No argument here
+        
         elif choice == '4':
             print("Exiting... Goodbye!")
             break
-
+        
         else:
             print("Invalid choice, please try again.\n")
 
