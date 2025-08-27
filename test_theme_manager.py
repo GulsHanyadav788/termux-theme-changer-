@@ -1,11 +1,18 @@
 # tests/test_theme_manager.py
 import unittest
+import tempfile
+import shutil
+import os
 from src.theme_manager import ThemeManager
 
 class TestThemeManager(unittest.TestCase):
 
     def setUp(self):
-        self.manager = ThemeManager()
+        self.test_dir = tempfile.mkdtemp()
+        self.manager = ThemeManager(self.test_dir)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
 
     def test_add_theme(self):
         self.assertTrue(self.manager.add_theme('Dark'))
@@ -26,7 +33,7 @@ class TestThemeManager(unittest.TestCase):
     def test_list_themes(self):
         self.manager.add_theme('Dark')
         self.manager.add_theme('Light')
-        self.assertEqual(self.manager.list_themes(), ['Dark', 'Light'])
+        self.assertEqual(sorted(self.manager.list_themes()), ['Dark', 'Light'])
 
 if __name__ == '__main__':
     unittest.main()
