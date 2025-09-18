@@ -1,16 +1,15 @@
 """
-Configuration Manager for Termex Theme Changer
+Configuration Manager for Termux Theme Changer
 Handles configuration loading, saving, and management
 """
 
 import os
 import yaml
-import json
 from pathlib import Path
 from typing import Any, Dict, Optional
 import logging
 
-logger = logging.getLogger("termex_theme_changer.config_manager")
+logger = logging.getLogger("termux_theme_changer.config_manager")
 
 
 class ConfigManager:
@@ -23,8 +22,7 @@ class ConfigManager:
             'current_theme': 'default',
             'auto_apply_on_start': False,
             'backup_before_apply': True,
-            'terminal_emulator': 'auto',
-            'theme_directory': str(Path.home() / '.termex' / 'themes')
+            'theme_directory': str(Path.home() / '.termux' / 'themes')
         }
     
     def load_config(self) -> bool:
