@@ -1,5 +1,5 @@
 """
-UI Manager for Termex Theme Changer
+UI Manager for Termux Theme Changer
 Handles user interface and input
 """
 
@@ -8,7 +8,7 @@ import sys
 from typing import Optional
 import logging
 
-logger = logging.getLogger("termex_theme_changer.ui_manager")
+logger = logging.getLogger("termux_theme_changer.ui_manager")
 
 
 class UIManager:
@@ -17,19 +17,20 @@ class UIManager:
     def display_menu(self) -> None:
         """Display the main menu"""
         print("\n" + "="*30)
-        print("     TERMEX THEME CHANGER")
+        print("     TERMUX THEME CHANGER")
         print("="*30)
         print("1. List available themes")
         print("2. Apply a theme")
         print("3. Revert to default theme")
         print("4. Show current theme")
-        print("5. Exit")
+        print("5. Create custom theme")
+        print("6. Exit")
         print("="*30)
     
     def get_user_choice(self) -> str:
         """Get user choice from menu"""
         try:
-            choice = input("\nPlease enter your choice (1-5): ").strip()
+            choice = input("\nPlease enter your choice (1-6): ").strip()
             return choice
         except (EOFError, KeyboardInterrupt):
             print("\nExiting...")
@@ -38,10 +39,10 @@ class UIManager:
             logger.error(f"Error getting user choice: {e}")
             return ""
     
-    def get_theme_name(self) -> Optional[str]:
+    def get_theme_name(self, prompt: str = "Enter the theme name: ") -> Optional[str]:
         """Get theme name from user"""
         try:
-            theme_name = input("Enter the theme name: ").strip()
+            theme_name = input(prompt).strip()
             return theme_name if theme_name else None
         except (EOFError, KeyboardInterrupt):
             print("\nCancelled.")
