@@ -1,2 +1,5 @@
-themes_directory: "/path/to/themes"
-default_theme_path: "/path/to/default/theme"
+current_theme: default
+auto_apply_on_start: false
+backup_before_apply: true
+terminal_emulator: auto
+theme_directory: ~/.termex/themes
